@@ -20,3 +20,7 @@ UI: http://localhost:3002 <br />
 UI External: http://localhost:3002 <br />
 ------------------------------------- [Browsersync] Serving files from: \_site
 <br />
+
+https://node-postgres.com/ <br/>
+
+on html file: to get a data from db use FILENAME to call this function inside
