@@ -9,5 +9,10 @@
 
     <p>contents: {{ contentss }}</p>
     <p>cats: {{ categoriez }}</p>
+    <ul>
+      {% for ctags in contenttags %}
+      <li>{{ctags.tag}}</li>
+      {% endfor %}
+    </ul>
   </body>
 </html>
