@@ -26,7 +26,11 @@ UI External: http://localhost:3002 <br />
 
 https://node-postgres.com/ <br/>
 
-on html file: to get a data from db use FILENAME to call this function inside
+on html file: to get a data from db use FILENAME to call this function inside<br/>
+There is a hierachy of data that will be used. For more information "Data Cascade".. <br/>
+eg. front matter data will be the first priority. <br/>
 
 https://www.11ty.dev/docs/pagination/<br/>
 pagination for generating every content from content list<br/>
+
+if .eleventy.js is an ugly file name. you can specify by your self then run with --config=my-new-eleventy-config.js <br/>

@@ -1,23 +1,62 @@
 const { Client } = require("pg");
+const XMLDom = require("xmldom");
 
 module.exports = function (eleventyConfig) {
-  eleventyConfig.addFilter("filesize", function (inputfromhtml) {
-    return inputfromhtml + " KB";
+  eleventyConfig.addFilter("upperDetails", function (details) {
+    const DOMParser = XMLDom.DOMParser;
+    const doc = new DOMParser().parseFromString(details, "text/html");
+
+    const paragraphs = getAllParagraphs(details);
+    var htmlUpperDetails = '<div id="upperDetails"></div>';
+    if (paragraphs.length > 2) {
+      const deepClone = true;
+      const firstParentChild = doc.firstChild.cloneNode(deepClone);
+      const upperParentNode = firstParentChild.cloneNode(!deepClone);
+      upperParentNode.appendChild(paragraphs[0]);
+      upperParentNode.appendChild(paragraphs[1]);
+
+      var xmlSerializer = new XMLDom.XMLSerializer();
+      htmlUpperDetails = xmlSerializer.serializeToString(upperParentNode);
+    } else {
+      htmlUpperDetails = content.details;
+    }
+    //htmlUpperDetails = "<div><p>test<p/><p>echo<p/></div>";
+    return htmlUpperDetails;
   });
 
-  const testdata = [
-    {
-      id: "c6d95e5f-4a68-4630-b64bf",
-      slug: "mathewdean",
-      title: 'zasdด่วน! "แมทธิว ดีน" ติดเชื้อไวรัสโควิด-19',
-      description: "Ronaldo wins Gold Cup in 2022 Premiere League ..",
-      details:
-        '<div><p>วันนี้( 13 มี.ค.63) หลังจากไวรัสโควิด-19 ยังคงระบาดทั่วโลกอย่างต่อเนื่อง ซึ่งล่าสุดมีผู้ติดเชื้อทั่วโลกแล้ว 134,829 ราย เสียชีวิต 4,984 ราย และรักษาหายแล้ว 70,395 ราย ซึ่งไวรัสดังกล่าวได้ทำให้คนดังในหลายประเทศติดเชื้ออย่างต่อเนื่องเช่นกัน</p><p>ล่าสุดพิธีกรและนักแสดงชือดัง "แมmธิว ดีน" ก็ได้ประกาศผ่านอินสตาแกรมส่วนตัวว่า ตัวเองติดเชื้อไวรัสโควิด-19 “ไม่ได้ล้อเล่นครับ เรื่องจริงครับผมใครที่สัมผัสผมในช่วงสามสี่วันที่ผ่านมาเฝ้าดูอาการนะครับ เดี๋ยวจะแจ้งรายละเอียดเพิ่มเติมหลังจากนี้” ซึ่งงานนี้ก็มีคนในวงการบันเทิงและชาวเน็ตที่รับรู้ข่าวถึงกับตกใจกันไปตามๆกัน พร้อมกับเข้าไปคอมเมนต์ให้กำลังใจอย่างต่อ<p>อย่างไรก็ตามก่อนหน้านี้ แมทธิว ดีน ก็ได้โพสต์อินสตาแกรมประกาศปิดค่ายมวยว่า "ขออภัยลูกค้าทุกท่าน วันศุกร์ ที่ 13 มีนาคม 2020 คงสิทธาจะงดให้บริการหนึ่งวันเพื่อทำความสะอาดฆ่าเชื้อในค่าย เพื่อป้องกันไวรัส COVID -19ขอบคุณครับ #khongsittha #muaythai #cleaning #covid19 @khongsittha"</p><p><img src="https://www.tnnthailand.com/storage/inline-images/news/7512023745e6b38c6a2335.jpeg" style="width: 805px;"><br></p></div>',
-      published_date: "0000-12-31T17:17:56.000Z",
-      created_at: "2020-04-18T22:27:16.724Z",
-      lastupdated_at: "2020-04-19T05:59:46.748Z",
-      category: "ccc300dc-7da7-4e70-a44f-93909dfadd22",
-      subcategory: "acc35f70-cc0c-49fe-8d04-e5f593627af3",
-    },
-  ];
+  function getAllParagraphs(details) {
+    const DOMParser = XMLDom.DOMParser;
+    const doc = new DOMParser().parseFromString(details, "text/html");
+    const docElement = doc.documentElement;
+
+    const paragraphs = docElement.getElementsByTagName("p");
+    return paragraphs;
+  }
+
+  eleventyConfig.addFilter("lowerDetails", function (details) {
+    console.log("lower detail filter");
+    const DOMParser = XMLDom.DOMParser;
+    var doc = new DOMParser().parseFromString(details, "text/html");
+
+    const paragraphs = getAllParagraphs(details);
+    var htmlUpperDetails = '<div id="upperDetails"></div>';
+    var htmlLowerDetails = '<div id="lowerDetails"></div>';
+    if (paragraphs.length > 2) {
+      var deepClone = true;
+      var firstParentChild = doc.firstChild.cloneNode(deepClone);
+      var upperParentNode = firstParentChild.cloneNode(!deepClone);
+      upperParentNode.appendChild(paragraphs[0]);
+      upperParentNode.appendChild(paragraphs[1]);
+
+      var lowerParentNode = firstParentChild.cloneNode(!deepClone);
+      while (paragraphs.length > 0) {
+        lowerParentNode.appendChild(paragraphs[0]);
+      }
+
+      var xmlSerializer = new XMLDom.XMLSerializer();
+      htmlUpperDetails = xmlSerializer.serializeToString(upperParentNode);
+      htmlLowerDetails = xmlSerializer.serializeToString(lowerParentNode);
+    }
+    return htmlLowerDetails;
+  });
 };
