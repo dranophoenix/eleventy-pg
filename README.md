@@ -1,4 +1,5 @@
-# ELEVENTY with PG no graphql yet
+<br/># ELEVENTY with PG no graphql yet
+
 https://www.11ty.dev/ <br/>
 
 npm init -y <br/>
@@ -23,3 +24,6 @@ UI External: http://localhost:3002 <br />
 https://node-postgres.com/ <br/>
 
 on html file: to get a data from db use FILENAME to call this function inside
+
+https://www.11ty.dev/docs/pagination/<br/>
+pagination for generating every content from content list<br/>
