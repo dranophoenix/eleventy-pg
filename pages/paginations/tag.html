@@ -3,7 +3,7 @@ pagination:
   data: contenttags
   size: 1
   alias: tag
-permalink: tag/{{ tag.rank }}/index.html
+permalink: tag/{{ tag.content }}/{{ tag.tag }}/index.html
 ---
 
 <!DOCTYPE html>
@@ -15,6 +15,6 @@ permalink: tag/{{ tag.rank }}/index.html
     <title>TAG</title>
   </head>
   <body>
-    {{ tag.tag }} {{ tag.rank }}
+    Tag: {{ tag.tag }} Rank: {{ tag.rank }}
   </body>
 </html>
