@@ -7,7 +7,11 @@
     <a href="/pages">Pages</a>
     <p>Hi {{ "100r9" | filesize }}</p>
 
-    <p>contents: {{ contentss }}</p>
+    <ul>
+      {% for content in contentss %}
+      <li><a href="/content/{{ content.slug }}">{{ content.title }}</a></li>
+      {% endfor %}
+    </ul>
     <p>cats: {{ categoriez }}</p>
   </body>
 </html>

@@ -7,11 +7,11 @@
     <a href="/">Home</a>
     <p>Hi {{ "PAGES" | filesize }}</p>
 
-    <p>contents: {{ contentss }}</p>
+    <p>contents: {{ contentss[0].slug }}</p>
     <p>cats: {{ categoriez }}</p>
     <ul>
       {% for ctags in contenttags %}
-      <li>{{ctags.tag}}</li>
+      <li><a href="/tag/{{ ctags.rank }}">{{ctags.tag}}</a></li>
       {% endfor %}
     </ul>
   </body>

@@ -1,5 +1,5 @@
 const { Client } = require("pg");
-async function getContents() {
+async function getContentTags() {
   const client = new Client({
     host: "localhost",
     port: 5432,
@@ -7,17 +7,17 @@ async function getContents() {
     database: "true4u",
   });
 
-  var contents = [];
+  var contentTags = [];
   try {
     client.connect();
-    const qpromise = client.query("SELECT * from public.content");
+    const qpromise = client.query("SELECT * from public.content_tag");
 
     const response = await qpromise;
-    contents = response.rows;
+    contentTags = response.rows;
   } catch (e) {
     console.log(e);
   }
-  return contents;
+  return contentTags;
 }
 
-module.exports = getContents;
+module.exports = getContentTags;
