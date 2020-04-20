@@ -1,5 +1,4 @@
-# Page header
-
+# ELEVENTY with PG no graphql yet
 https://www.11ty.dev/ <br/>
 
 npm init -y <br/>
