@@ -22,3 +22,5 @@ UI External: http://localhost:3002 <br />
 <br />
 
 https://node-postgres.com/ <br/>
+
+on html file: to get a data from db use FILENAME to call this function inside
