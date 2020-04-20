@@ -18,7 +18,7 @@ module.exports = function (eleventyConfig) {
       var xmlSerializer = new XMLDom.XMLSerializer();
       htmlUpperDetails = xmlSerializer.serializeToString(upperParentNode);
     } else {
-      htmlUpperDetails = content.details;
+      htmlUpperDetails = details;
     }
     return htmlUpperDetails;
   });
