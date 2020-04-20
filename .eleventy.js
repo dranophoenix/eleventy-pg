@@ -20,7 +20,6 @@ module.exports = function (eleventyConfig) {
     } else {
       htmlUpperDetails = content.details;
     }
-    //htmlUpperDetails = "<div><p>test<p/><p>echo<p/></div>";
     return htmlUpperDetails;
   });
 
@@ -34,7 +33,6 @@ module.exports = function (eleventyConfig) {
   }
 
   eleventyConfig.addFilter("lowerDetails", function (details) {
-    console.log("lower detail filter");
     const DOMParser = XMLDom.DOMParser;
     var doc = new DOMParser().parseFromString(details, "text/html");
 
