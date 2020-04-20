@@ -18,7 +18,7 @@ module.exports = function (eleventyConfig) {
       var xmlSerializer = new XMLDom.XMLSerializer();
       htmlUpperDetails = xmlSerializer.serializeToString(upperParentNode);
     } else {
-      htmlUpperDetails = content.details;
+      htmlUpperDetails = details;
     }
     //htmlUpperDetails = "<div><p>test<p/><p>echo<p/></div>";
     return htmlUpperDetails;
@@ -34,7 +34,6 @@ module.exports = function (eleventyConfig) {
   }
 
   eleventyConfig.addFilter("lowerDetails", function (details) {
-    console.log("lower detail filter");
     const DOMParser = XMLDom.DOMParser;
     var doc = new DOMParser().parseFromString(details, "text/html");
 
