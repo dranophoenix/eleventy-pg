@@ -11,7 +11,9 @@
     <p>cats: {{ categoriez }}</p>
     <ul>
       {% for ctags in contenttags %}
-      <li><a href="/tag/{{ ctags.rank }}">{{ctags.tag}}</a></li>
+      <li>
+        <a href="/tag/{{ ctags.content }}/{{ ctags.tag }}">{{ctags.tag}}</a>
+      </li>
       {% endfor %}
     </ul>
   </body>
